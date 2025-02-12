@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Game</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: pink;
+        }
+        h1 {
+            margin-top: 50px;
+            font-size: 2.5em;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 1.5em;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 10px;
+        }
+        .yes {
+            background-color: red;
+            color: white;
+        }
+        .no {
+            background-color: white;
+            color: red;
+            position: absolute;
+        }
+        @keyframes hearts {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        .heart {
+            color: red;
+            font-size: 2em;
+            position: absolute;
+            animation: hearts 2s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my Valentine? ❤️</h1>
+    <div class="buttons">
+        <button class="btn yes" onclick="showLove()">Yes</button>
+        <button class="btn no" onmouseover="moveNo()">No</button>
+    </div>
+    <script>
+        function showLove() {
+            document.body.innerHTML = "<h1>Yay! ❤️ Happy Valentine's Day!</h1>";
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+                heart.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 2000);
+            }
+        }
+        function moveNo() {
+            let noButton = document.querySelector('.no');
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            noButton.style.left = x + 'px';
+            noButton.style.top = y + 'px';
+        }
+    </script>
+</body>
+</html>
